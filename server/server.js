@@ -24,7 +24,8 @@ app.post('/todos', (req, res) => {
 app.post('/users', (req, res) => {
     var user = new User({
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        name: req.body.name
     });
     console.log('Data from mongoose');
     console.log(user);
@@ -41,4 +42,6 @@ app.post('/users', (req, res) => {
 app.listen(3000, () => {
     console.log('Started on port 3000');
 });
+
+module.exports = {app};
 

@@ -9,7 +9,14 @@ var User = mongoose.model('User', {
     },
     password: {
         type: String,
-        default: 'not set'
+        default: 'not set',
+        trim: true
+    },
+    name: {
+        type: String,
+        required: true,
+        minlength: 1,
+        trim: true
     }
 });
 
