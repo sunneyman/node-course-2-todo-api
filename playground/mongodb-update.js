@@ -14,9 +14,6 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {
        $set: {
            name: 'Andrew'
         },
-    //    $unset: {
-    //     lastName: ''    
-    //    },
        $inc: {
            age: -2
        } 
