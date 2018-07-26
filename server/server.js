@@ -40,6 +40,7 @@ app.post('/users', (req, res) => {
     });
 });
 
+
 app.get('/todos', (req, res) => {
     Todo.find().then((todos) => {
         res.send({todos});
@@ -48,7 +49,7 @@ app.get('/todos', (req, res) => {
     });
 });
 
-// GET /todos/123
+
 app.get('/todos/:id', (req, res) => {
     var id = req.params.id;
 
@@ -60,27 +61,30 @@ app.get('/todos/:id', (req, res) => {
         if (!todo) {
             return res.status(404).send();
         }
-        // res.send('Todo found:' + JSON.stringify(todo, undefined, 2));
         res.send({todo});
     }).catch((e) => {
         res.status(400).send();
     });
-
-
-
-    // res.send('Well done!');
-    // Todo.findById(id).then((todo) => {
-    //     if (!todo) {
-    //         return todo.status(400).send();
-    //     }
-    //     todo.send('Todo found:', JSON.stringify(todo, undefined, 2));
-    // }, (e) => {
-    //     todo.send(e).done();
-    // });
-
 });
 
-// ---------------------------------------------------
+
+app.delete('/todos/:id', (req, res) => {
+    var id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        return res.status(404).send();    
+    }
+    
+    Todo.findByIdAndRemove(id).then((todo) => {
+        if (!todo) {
+            return res.status(404).send();
+        }
+        res.send({todo});
+    }).catch((e) => {
+        res.status(400).send();
+    });
+});
+
 
 app.get('/users', (req, res) => {
     User.find().then((users) => {
@@ -89,6 +93,7 @@ app.get('/users', (req, res) => {
         res.status(400).send(e);
     });
 });
+
 
 app.listen(port, () => {
     console.log(`Started on port ${port}`);
