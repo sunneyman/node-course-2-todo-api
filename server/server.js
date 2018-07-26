@@ -30,13 +30,10 @@ app.post('/users', (req, res) => {
         password: req.body.password,
         name: req.body.name
     });
-    console.log('Data from mongoose');
-    console.log(user);
     user.save().then((doc) => {
         res.send(doc);
     }, (e) => {
         res.status(400).send(e);
-        console.log(e);
     });
 });
 
@@ -84,16 +81,6 @@ app.delete('/todos/:id', (req, res) => {
         res.status(400).send();
     });
 });
-
-
-app.get('/users', (req, res) => {
-    User.find().then((users) => {
-        res.send({users});
-    }, (e) => {
-        res.status(400).send(e);
-    });
-});
-
 
 app.patch('/todos/:id', (req, res) => {
     var id = req.params.id;
