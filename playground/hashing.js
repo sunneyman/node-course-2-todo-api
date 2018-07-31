@@ -12,8 +12,12 @@ var password = '123abc!';
 
 var hashedPassword = '$2a$10$s7wgmIPV0jqwo6sWfoBPxew/tS5pnCOSiJoZVdUGfcidCYE7l9zgS';
 
-bcrypt.compare('123', hashedPassword, (err, res) => {
-    console.log(res);
+bcrypt.compare('123abc!', hashedPassword, (err, res) => {
+    if (res) {
+        console.log('They match!');
+    } else {
+        console.log('They do not match');
+    }
 });
 
 
