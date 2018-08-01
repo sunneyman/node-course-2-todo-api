@@ -72,6 +72,7 @@ app.delete('/todos/:id', (req, res) => {
     });
 });
 
+
 app.patch('/todos/:id', (req, res) => {
     var id = req.params.id;
     var body = _.pick(req.body, ['text', 'completed']);
@@ -97,9 +98,7 @@ app.patch('/todos/:id', (req, res) => {
 });
 
 
-// POST /users -----------------
-
-    app.post('/users', (req, res) => {
+app.post('/users', (req, res) => {
         var body = _.pick(req.body, ['email', 'password']);
         var user = new User(body);
         user.save().then(() => {
@@ -116,8 +115,7 @@ app.patch('/todos/:id', (req, res) => {
         res.send(req.user);
     });
 
-//  POST /users/login {email, password}
-
+ 
 app.post('/users/login', (req, res) => {
     var body = _.pick(req.body, ['email', 'password']);
 
